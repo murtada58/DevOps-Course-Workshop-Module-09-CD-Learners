@@ -45,7 +45,7 @@ Take a look at the Dockerfile, can you see what it's doing?
 
 You will see that the repository already has a pipeline defined which should handle running your tests etc. Take a look and check you understand what it's doing. Once you've verified it passes, for today it's OK for speed reasons to change the value of the "skip-testing" parameter to `true`.
 
-> Note that if you specify that one job depends on another and that dependency is skipped, it won't run by default. You may need to explicitly tell your job to check `not(or(failed(), canceled())` so that skipped statuses are allowed
+> Note that if you specify that one job depends on another and that dependency is skipped, it won't run by default. You may need to explicitly tell your job to check `not(or(failed(), canceled()))` so that skipped statuses are allowed
 
 We now want to extend that pipeline to build & publish our Docker image to DockerHub.
 
