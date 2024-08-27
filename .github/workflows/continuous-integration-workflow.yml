@@ -52,4 +52,14 @@ jobs:
         context: .
         push: true
         tags:  ${{ secrets.DOCKERHUB_USERNAME }}/dotnettemplate:${{ github.sha }}
-
+    
+  deploy_changes:
+    name: Deploy the changes on Azure
+    needs: [push_to_registry]
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+        - name: trigger redeploy
+          env:
+            ESCAPED_WEBHOOK: '${{ secrets.RAW_WEBHOOK }}'
+          run: curl --fail -dH -X POST $ESCAPED_WEBHOOK
