@@ -51,7 +51,7 @@ jobs:
       with:
         context: .
         push: true
-        tags:  ${{ secrets.DOCKERHUB_USERNAME }}/dotnettemplate:${{ github.sha }}
+        tags:  ${{ secrets.DOCKERHUB_USERNAME }}/dotnettemplate:latest , ${{ secrets.DOCKERHUB_USERNAME }}/dotnettemplate:${{ github.sha }}
     
   deploy_changes:
     name: Deploy the changes on Azure
